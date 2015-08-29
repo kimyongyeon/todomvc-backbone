@@ -52,7 +52,17 @@
 		<button id="clear-completed">Clear competed (<%= completed %>)</button>
 		<% } %>
 	</script>
-	
+
+	<script id="entry-template" type="text/x-handlebars-template">
+		<div class="entry">
+			<h1>{{title}}</h1>
+			<div class="body">
+				{{body}}
+			</div>
+		</div>
+	</script>
+
+
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/underscore.js"></script>
 	<script src="js/lib/backbone.js"></script>
@@ -65,6 +75,22 @@
 	<script src="js/routers/router.js"></script>
 
 	<script src="js/app.js"></script>
+
+	<script src="js/lib/handlebars.js"></script>
+
+	<script>
+		var source   = $("#entry-template").html();
+		var template = Handlebars.compile(source);
+
+		var context = {title: "My New Post", body: "This is my first post!"};
+		var html    = template(context);
+
+		console.log(html);
+
+		$('body').append(html);
+
+	</script>
+
 
 </body>
 </html>
